@@ -36,17 +36,18 @@ La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación*
 ---
 
 ## 📂 Estructura del repositorio
-├── fraude_pipeline_dag.py # DAG de Airflow (Composer)
-├── README.md # Este documento
-├── looker/ # Capturas de dashboards
-│ ├── dashboard_overview.png
-│ ├── analisis_fraude.png
-│ ├── patrones_riesgo.png
-│ └── importes_fraude.png
-└── resultados/ # Evidencias de ejecución
-├── dag_ejecucion.png # Airflow en verde (success)
-└── bigquery_tablas.png # Validación tablas raw/clean
-
+```bash
+.
+├── fraude_pipeline_dag.py          # DAG de Airflow (Composer)
+├── README.md                       # Este documento
+├── looker/                         # Capturas de dashboards
+│   ├── dashboard_overview.png
+│   ├── analisis_fraude.png
+│   ├── patrones_riesgo.png
+│   └── importes_fraude.png
+└── resultados/                     # Evidencias de ejecución
+    ├── dag_ejecucion.png           # Airflow en verde (success)
+    └── bigquery_tablas.png         # Validación tablas raw/clean
 ---
 
 ## ⚙️ Requisitos previos

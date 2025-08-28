@@ -1,81 +1,46 @@
-# 🚀 Proyecto TFM – Detección de Fraude Financiero con Google Cloud Platform
+# 🚀 Proyecto TFM – Pipeline ETL Serverless en Google Cloud para Detección de Fraude
 
-Este repositorio contiene el desarrollo del Trabajo Fin de Máster (TFM) centrado en la **implementación de un pipeline ETL serverless en Google Cloud Platform (GCP)**, diseñado para la **detección y análisis de fraude financiero** utilizando datos sintéticos.
+Este repositorio contiene el código, recursos y documentación asociados al **Trabajo Fin de Máster (TFM)**, cuyo objetivo es diseñar e implementar un **pipeline ETL serverless en Google Cloud Platform (GCP)** para el tratamiento y análisis de datos financieros sintéticos orientados a la **detección de fraude**.
+
+---
+
+## 📌 Objetivos del proyecto
+
+- Diseñar una arquitectura cloud **serverless** y modular.  
+- Automatizar la ingesta, transformación y almacenamiento de datos.  
+- Generar una capa analítica enriquecida para la detección de patrones de fraude.  
+- Desplegar dashboards interactivos en **Looker Studio** que faciliten el análisis por perfiles técnicos y de negocio.  
+
+---
+
+## 🏗️ Arquitectura
+
+La solución implementada se compone de los siguientes servicios de Google Cloud:
+
+- **Google Cloud Storage (GCS)** → almacenamiento de los ficheros CSV (datalake).  
+- **Cloud Composer (Airflow)** → orquestación y monitorización del pipeline ETL.  
+- **BigQuery** → motor de análisis para las capas *raw* y *clean*.  
+- **Looker Studio** → visualización de métricas y patrones de fraude.  
+
+📌 **Flujo ETL:**  
+`GCS → Composer (Airflow) → BigQuery (raw / clean) → Looker Studio`
 
 ---
 
 ## 📂 Estructura del repositorio
-.
-├── dags/ # Código del DAG en Apache Airflow (Cloud Composer)
-│ └── fraude_pipeline_dag.py
-├── sql/ # Scripts de transformación en BigQuery
-│ └── transformaciones.sql
-├── looker/ # Capturas del dashboard en Looker Studio
-│ ├── dashboard_overview.png
-│ ├── analisis_fraude.png
-│ ├── patrones_riesgo.png
-│ └── visualizaciones.png
-├── resultados/ # Evidencias de ejecución y validación
-│ ├── composer_ejecucion.png
-│ └── validacion_bq.png
-└── README.md
-
+┣ 📂 dags/ # DAG de Airflow (fraude_pipeline_dag.py)
+┣ 📂 looker/ # Capturas de los dashboards de Looker Studio
+┣ 📂 logs/ # Evidencias de ejecución y validación
+┣ 📜 README.md # Documentación principal
+┣ 📜 LICENSE # Licencia del proyecto
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+🔒 Licencia
 
-- **Google Cloud Storage (GCS)** → Almacenamiento de los datos de entrada.
-- **BigQuery** → Procesamiento, transformación y enriquecimiento de datos.
-- **Cloud Composer (Airflow)** → Orquestación del pipeline ETL.
-- **Looker Studio** → Creación de dashboards interactivos para la visualización de resultados.
-- **GitHub** → Control de versiones y documentación del proyecto.
+Este proyecto se distribuye bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente, siempre citando al autor original.
 
----
-
-## 📊 Descripción del pipeline
-
-1. **Ingesta**: los datos sintéticos en formato CSV se cargan en un bucket de GCS.  
-2. **Carga RAW**: los datos se almacenan en la tabla `financial_transactions_raw` en BigQuery.  
-3. **Transformación CLEAN**: mediante SQL se crean nuevas variables, se normalizan campos y se calculan métricas de riesgo.  
-4. **Visualización**: Looker Studio consume la capa *clean* para mostrar indicadores y patrones de fraude.  
-5. **Orquestación**: todo el proceso es gestionado por un DAG en Cloud Composer (Airflow).
-
----
-
-## 📈 Dashboard en Looker Studio
-
-El dashboard diseñado permite analizar:
-
-- **Volumen total de transacciones** y porcentaje de fraude.  
-- **Distribución por canal de pago y dispositivo**.  
-- **Evolución temporal de fraudes** con patrones de riesgo.  
-- **Análisis geográfico** de operaciones sospechosas.  
-
-📷 Las capturas del dashboard se encuentran en la carpeta [`/looker`](./looker).
-
----
-
-## ✅ Resultados y validación
-
-- El pipeline se ejecuta correctamente en Cloud Composer.  
-- Se generan las tablas `financial_transactions_raw` y `financial_transactions_clean` en BigQuery.  
-- Los datos limpios permiten construir dashboards interactivos y representativos para el análisis de fraude.  
-
-📷 Evidencias de ejecución y validación disponibles en [`/resultados`](./resultados).
-
----
-
-## 📚 Referencias
-
-- Kaggle – *Synthetic Financial Datasets for Fraud Detection*  
-- Google Cloud Documentation: BigQuery, Cloud Composer, Looker Studio  
-- TFM – Universidad Nacional de Educación a Distancia (UNED)  
-
----
-
-## 👨‍💻 Autor
-
-- **Nombre y Apellidos**  
-- Máster en [nombre del máster] – UNED  
-- Año: 2025
+👤 Autor
+Diego Rubianes Sousa
+Trabajo Fin de Máster – Ingeniería de Datos
+UNED – 2025

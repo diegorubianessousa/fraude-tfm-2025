@@ -74,3 +74,8 @@ gsutil cp fraude_pipeline_dag.py gs://us-central1-fraude-composer-8ec45861-bucke
 ```bash
 gs://tfm-fraude-datalake-1754407122/entradas/financial_fraud_detection_dataset.csv
 ```
+### 3) Ejecutar el pipeline
+Desde la UI de airflow:
+  1. Abre fraude_pipeline_dag.
+  2. Trigger DAG.
+  3. Verifica nodos en verde (success): inicio → cargar_csv_gcs → transformar_datos → fin.

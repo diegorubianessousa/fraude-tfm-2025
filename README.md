@@ -46,3 +46,22 @@ La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación*
 └── resultados/ # Evidencias de ejecución
 ├── dag_ejecucion.png # Airflow en verde (success)
 └── bigquery_tablas.png # Validación tablas raw/clean
+
+---
+
+## ⚙️ Requisitos previos
+
+- Proyecto en **GCP** con facturación activa.
+- Permisos para: GCS, Composer, BigQuery y Looker Studio.
+- **APIs habilitadas**: BigQuery, Cloud Composer, Cloud Storage.
+- **gsutil** y **gcloud** (opcional si subes desde consola).
+
+---
+
+## 🚦 Despliegue
+
+### 1) Subir el DAG a Cloud Composer
+Copia el DAG al bucket de Composer:
+
+```bash
+gsutil cp fraude_pipeline_dag.py gs://us-central1-fraude-composer-8ec45861-bucket/dags/

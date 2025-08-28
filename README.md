@@ -67,3 +67,8 @@ Copia el DAG al bucket de Composer:
 
 ```bash
 gsutil cp fraude_pipeline_dag.py gs://us-central1-fraude-composer-8ec45861-bucket/dags/
+
+### 2) Ubicar los datos de entrada en GCS
+
+```bash
+gs://tfm-fraude-datalake-1754407122/entradas/financial_fraud_detection_dataset.csv

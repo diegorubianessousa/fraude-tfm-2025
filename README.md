@@ -48,6 +48,7 @@ La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación*
 └── resultados/                     # Evidencias de ejecución
     ├── dag_ejecucion.png           # Airflow en verde (success)
     └── bigquery_tablas.png         # Validación tablas raw/clean
+``` 
 ---
 
 ## ⚙️ Requisitos previos

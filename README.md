@@ -1,46 +1,39 @@
-# 🚀 Proyecto TFM – Pipeline ETL Serverless en Google Cloud para Detección de Fraude
+# 🚀 TFM — Pipeline ETL Serverless en Google Cloud para Detección de Fraude
 
-Este repositorio contiene el código, recursos y documentación asociados al **Trabajo Fin de Máster (TFM)**, cuyo objetivo es diseñar e implementar un **pipeline ETL serverless en Google Cloud Platform (GCP)** para el tratamiento y análisis de datos financieros sintéticos orientados a la **detección de fraude**.
-
----
-
-## 📌 Objetivos del proyecto
-
-- Diseñar una arquitectura cloud **serverless** y modular.  
-- Automatizar la ingesta, transformación y almacenamiento de datos.  
-- Generar una capa analítica enriquecida para la detección de patrones de fraude.  
-- Desplegar dashboards interactivos en **Looker Studio** que faciliten el análisis por perfiles técnicos y de negocio.  
+Este repositorio acompaña al Trabajo Fin de Máster (TFM) y documenta la construcción de un **pipeline ETL 100% serverless en Google Cloud Platform (GCP)** para preparar y exponer **datos financieros sintéticos** orientados a la **detección de fraude**.  
+La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación** (SQL en BigQuery) y la **exposición** (Looker Studio), todo ello **orquestado con Cloud Composer (Airflow)**.
 
 ---
 
-## 🏗️ Arquitectura
+## 📌 Alcance y objetivos
 
-La solución implementada se compone de los siguientes servicios de Google Cloud:
+- Diseñar una **arquitectura cloud nativa** y **serverless**.
+- Automatizar **ingesta**, **transformación** y **disponibilización** de datos.
+- Generar una **capa analítica clean** con **variables derivadas y métricas de riesgo**.
+- Exponer resultados en **dashboards** (Looker Studio) para negocio y analítica.
 
-- **Google Cloud Storage (GCS)** → almacenamiento de los ficheros CSV (datalake).  
-- **Cloud Composer (Airflow)** → orquestación y monitorización del pipeline ETL.  
-- **BigQuery** → motor de análisis para las capas *raw* y *clean*.  
-- **Looker Studio** → visualización de métricas y patrones de fraude.  
+**Caso de uso**: Detección de patrones de fraude a partir de un dataset sintético con millones de transacciones.
 
-📌 **Flujo ETL:**  
-`GCS → Composer (Airflow) → BigQuery (raw / clean) → Looker Studio`
+---
+
+## 🏗️ Arquitectura (alto nivel)
+
+**Flujo ETL**  
+`GCS (entrada CSV) → Cloud Composer/Airflow → BigQuery (raw → clean) → Looker Studio`
+
+**Servicios GCP empleados**
+- **Google Cloud Storage (GCS)**: *datalake* de entrada  
+  - `gs://tfm-fraude-datalake-1754407122/entradas/`
+- **Cloud Composer (Airflow)**: orquestación y monitorización  
+  - Entorno: `fraude-composer-env` (Composer 2.13.8 · Airflow 2.10.5)  
+  - Bucket DAGs: `gs://us-central1-fraude-composer-8ec45861-bucket/dags/`
+- **BigQuery**: almacenamiento y transformación (SQL)  
+  - Proyecto: `fraude-tfm-2025`  
+  - Dataset: `fraude_dataset`  
+  - Tablas: `financial_transactions_raw` y `financial_transactions_clean`
+- **Looker Studio**: visualización interactiva
 
 ---
 
 ## 📂 Estructura del repositorio
-┣ 📂 dags/ # DAG de Airflow (fraude_pipeline_dag.py)
-┣ 📂 looker/ # Capturas de los dashboards de Looker Studio
-┣ 📂 logs/ # Evidencias de ejecución y validación
-┣ 📜 README.md # Documentación principal
-┣ 📜 LICENSE # Licencia del proyecto
 
----
-
-🔒 Licencia
-
-Este proyecto se distribuye bajo licencia MIT. Puedes usarlo, modificarlo y distribuirlo libremente, siempre citando al autor original.
-
-👤 Autor
-Diego Rubianes Sousa
-Trabajo Fin de Máster – Ingeniería de Datos
-UNED – 2025

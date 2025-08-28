@@ -1,4 +1,4 @@
-# 🚀 TFM — Pipeline ETL Serverless en Google Cloud para Detección de Fraude
+# TFM — Pipeline ETL Serverless en Google Cloud para Detección de Fraude
 
 Este repositorio acompaña al Trabajo Fin de Máster (TFM) y documenta la construcción de un **pipeline ETL 100% serverless en Google Cloud Platform (GCP)** para preparar y exponer **datos financieros sintéticos** orientados a la **detección de fraude**.  
 La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación** (SQL en BigQuery) y la **exposición** (Looker Studio), todo ello **orquestado con Cloud Composer (Airflow)**.
@@ -36,4 +36,13 @@ La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación*
 ---
 
 ## 📂 Estructura del repositorio
-
+├── fraude_pipeline_dag.py # DAG de Airflow (Composer)
+├── README.md # Este documento
+├── looker/ # Capturas de dashboards
+│ ├── dashboard_overview.png
+│ ├── analisis_fraude.png
+│ ├── patrones_riesgo.png
+│ └── importes_fraude.png
+└── resultados/ # Evidencias de ejecución
+├── dag_ejecucion.png # Airflow en verde (success)
+└── bigquery_tablas.png # Validación tablas raw/clean

@@ -118,3 +118,16 @@ SELECT
   ...
 FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_raw`
 WHERE amount IS NOT NULL;
+
+---
+
+## 🔎 Validación (consultas útiles)
+
+### Conteo de registros
+```sql
+SELECT 'raw'  AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_raw`
+UNION ALL
+SELECT 'clean' AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_clean`;
+...
+---
+

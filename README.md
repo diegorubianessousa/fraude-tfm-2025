@@ -129,5 +129,6 @@ SELECT 'raw'  AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financ
 UNION ALL
 SELECT 'clean' AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_clean`;
 ...
+
 ---
 

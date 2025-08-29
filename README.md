@@ -182,7 +182,9 @@ Si incluyes archivo LICENSE, referencia aquí su contenido.
 👤 Autoría
 
 Diego Rubianes Sousa
+
 Máster en Big Data and Business Analytics — UNED
+
 Año: 2025
 
 ---

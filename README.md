@@ -89,3 +89,32 @@ Capa raw con los datos tal y como llegan desde GCS. Base para auditoría, reproc
 
 fraude-tfm-2025.fraude_dataset.financial_transactions_clean
 Capa clean con limpieza, normalización y variables derivadas: métricas temporales, bins de importe, scores de riesgo, contadores por ventana, indicadores por canal y dispositivo, etc. Es la tabla base para dashboards y analítica.
+
+---
+
+## 🧠 Transformación principal (BigQuery)
+
+La transformación de datos se realiza directamente en **BigQuery** a través de SQL, orquestada desde el DAG `fraude_pipeline_dag.py`.  
+
+### Objetivos principales
+- Conversión de la capa **raw** en **clean**.  
+- Derivación de variables temporales (hora, día, semana, trimestre).  
+- Normalización de campos (ubicaciones, categorías de dispositivos y canales).  
+- Cálculo de métricas de riesgo:  
+  - `transaction_risk_score` (combinación de anomalías geográficas, velocidad y desviación de gasto).  
+  - Señales de riesgo (`risk_signals_count`).  
+  - Bins de importe y franjas horarias.  
+  - Variables dummy por canal/dispositivo.  
+
+### Ejemplo (extracto de la query dentro del DAG)
+
+```sql
+CREATE OR REPLACE TABLE `fraude-tfm-2025.fraude_dataset.financial_transactions_clean` AS
+SELECT
+  transaction_id,
+  TIMESTAMP(timestamp) AS timestamp,
+  EXTRACT(YEAR FROM TIMESTAMP(timestamp)) AS year,
+  EXTRACT(MONTH FROM TIMESTAMP(timestamp)) AS month,
+  ...
+FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_raw`
+WHERE amount IS NOT NULL;

@@ -41,13 +41,13 @@ La solución automatiza la **ingesta** (GCS → BigQuery), la **transformación*
 ├── fraude_pipeline_dag.py          # DAG de Airflow (Composer)
 ├── README.md                       # Este documento
 ├── looker/                         # Capturas de dashboards
-│   ├── dashboard_overview.png
+│   ├── vision_general.png
 │   ├── analisis_fraude.png
-│   ├── patrones_riesgo.png
-│   └── importes_fraude.png
-└── resultados/                     # Evidencias de ejecución
-    ├── dag_ejecucion.png           # Airflow en verde (success)
-    └── bigquery_tablas.png         # Validación tablas raw/clean
+│   ├── patrones_fraude.png
+│   └── analisis_importe.png
+└── validations/                     # Evidencias de ejecución
+    ├── ejecucion_dag.png           # Airflow en verde (success)
+    └── validacion_bigquery.png         # Validación tablas raw/clean
 ``` 
 ---
 
@@ -179,7 +179,7 @@ Si incluyes archivo LICENSE, referencia aquí su contenido.
 
 ---
 
-👤 Autoría
+## 👤 Autoría
 
 Diego Rubianes Sousa
 
@@ -190,7 +190,7 @@ Año: 2025
 ---
 
 
-🔗 Referencias
+## 🔗 Referencias
 
 Google Cloud: BigQuery, Cloud Composer, Looker Studio (documentación oficial)
 

@@ -82,7 +82,7 @@ Desde la UI de airflow:
 
 ---
 
-##🗄️ Modelo de datos (BigQuery)
+## 🗄️ Modelo de datos (BigQuery)
 
 fraude-tfm-2025.fraude_dataset.financial_transactions_raw
 Capa raw con los datos tal y como llegan desde GCS. Base para auditoría, reprocesos y trazabilidad.

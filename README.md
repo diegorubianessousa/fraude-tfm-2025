@@ -129,6 +129,69 @@ SELECT 'raw'  AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financ
 UNION ALL
 SELECT 'clean' AS capa, COUNT(*) AS n FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_clean`;
 ```
+### Campos nulos críticos en clean
+```sql
+SELECT
+  SUM(CASE WHEN transaction_id IS NULL THEN 1 ELSE 0 END) AS null_txid,
+  SUM(CASE WHEN timestamp      IS NULL THEN 1 ELSE 0 END) AS null_ts,
+  SUM(CASE WHEN amount         IS NULL THEN 1 ELSE 0 END) AS null_amount
+FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_clean`;
+```
+### Duplicados por transaction_id
+```sql
+SELECT transaction_id, COUNT(*) AS c
+FROM `fraude-tfm-2025.fraude_dataset.financial_transactions_clean`
+GROUP BY transaction_id
+HAVING c > 1
+ORDER BY c DESC;
+```   
 
 ---
 
+## 📈 Visualización (Looker Studio)   
+Conecta Looker Studio a la tabla clean para construir:
+
+Volumen total de transacciones y % fraude
+
+Evolución temporal (series)
+
+Distribución por canal, dispositivo y franjas horarias
+
+Mapas/treemaps por ubicación y nivel de riesgo
+
+Sankey canal ↔ dispositivo, embudo de factores, etc.
+
+Las capturas están en /looker
+
+---
+
+## 🧩 Resolución de incidencias (lecciones aprendidas)
+1. Ventanas con RANGE: BigQuery exige ORDER BY numérico. ✅ Solución aplicada: ORDER BY UNIX_SECONDS(TIMESTAMP(timestamp)) RANGE …
+2. Autodetección de schema en carga desde GCS (CSV): habilitada en el operador GCSToBigQueryOperator.
+3. Trazabilidad: separación raw/clean para auditoría y analítica.
+
+---
+
+## 🧾 Licencia
+
+Recomendado publicar bajo MIT (u otra equivalente).
+Si incluyes archivo LICENSE, referencia aquí su contenido.
+
+---
+
+👤 Autoría
+
+Diego Rubianes Sousa
+Máster en Big Data and Business Analytics — UNED
+Año: 2025
+
+---
+
+
+🔗 Referencias
+
+Google Cloud: BigQuery, Cloud Composer, Looker Studio (documentación oficial)
+
+Dataset sintético de fraude (Kaggle)
+
+Bibliografía académica incluida en la memoria del TFM

@@ -79,3 +79,13 @@ Desde la UI de airflow:
   1. Abre fraude_pipeline_dag.
   2. Trigger DAG.
   3. Verifica nodos en verde (success): inicio → cargar_csv_gcs → transformar_datos → fin.
+
+---
+
+🗄️ Modelo de datos (BigQuery)
+
+fraude-tfm-2025.fraude_dataset.financial_transactions_raw
+Capa raw con los datos tal y como llegan desde GCS. Base para auditoría, reprocesos y trazabilidad.
+
+fraude-tfm-2025.fraude_dataset.financial_transactions_clean
+Capa clean con limpieza, normalización y variables derivadas: métricas temporales, bins de importe, scores de riesgo, contadores por ventana, indicadores por canal y dispositivo, etc. Es la tabla base para dashboards y analítica.
